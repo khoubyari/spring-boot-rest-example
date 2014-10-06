@@ -12,9 +12,7 @@ This application is packaged as a war which has Tomcat 7 embedded. No Tomcat or 
 * Once successfully built, you can run the service by one of these two methods:
 ```
         java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.1.0.war
-```
-or 
-```
+or
         mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 ```
 * Check the stdout to make sure no exceptions are thrown
@@ -28,7 +26,7 @@ Once the application runs you should see something like this
 
 ## About the Service
 
-The service is just a simple hotel review REST service. It uses an in-memory database to store the data. You can also do with with a relational database like MySQL or PostgreSQL. If your database connection properties work, you can call some REST endpoints defined in ```com.khoubyari.example.api.rest.hotelController``` on **port 8090**. (see below)
+The service is just a simple hotel review REST service. It uses an in-memory database to store the data. You can also do with a relational database like MySQL or PostgreSQL. If your database connection properties work, you can call some REST endpoints defined in ```com.khoubyari.example.api.rest.hotelController``` on **port 8090**. (see below)
 
 More interestingly, you can start calling some of the operational endpoints (see full list below) like ```/metrics``` and ```/health``` (these are available on **port 8091**)
 
@@ -122,6 +120,51 @@ Spring Boot is an "opinionated" application bootstrapping framework that makes i
 **/trace** Displays trace information (by default the last few HTTP requests).
 
 
+# Running the project with MySQL
+
+This project uses an in-memory database so that you don't have to install a database in order to run it. However, converting it to run with another relational database such as MySQL or PostgreSQL is very easy. Since the project uses Spring Data and the Repository pattern, it's even fairly easy to back the same service with MongoDB. 
+
+Here is what you would do to back the services with MySQL, for example: 
+
+### In pom.xml add: 
+
+```
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+```
+
+### Append this to the end of application.yml: 
+
+```
+---
+spring:
+  profiles: mysql
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://<your_mysql_host_or_ip>/xservicetest
+    username: <your_mysql_username>
+    password: <your_mysql_password>
+
+  jpa:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQLInnoDBDialect
+      ddl-auto: update # todo: in non-dev environments, comment this out:
+
+
+hotel.service:
+  name: 'test profile:'
+```
+
+### Then run is using the 'mysql' profile:
+
+```
+        java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.1.0.war
+or
+        mvn spring-boot:run -Drun.arguments="spring.profiles.active=mysql"
+```
 
 # Attaching to the app remotely from your IDE
 
