@@ -52,7 +52,7 @@ Here are some endpoints you can call:
 http://localhost:8091/env
 http://localhost:8091/health
 http://localhost:8091/info
-http://localhost:8091/envmetrics
+http://localhost:8091/metrics
 ```
 
 ### Create a hotel resource
