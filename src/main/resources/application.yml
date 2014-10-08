@@ -14,7 +14,7 @@ spring.jmx:
 spring:
   datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:xservicetest;MODE=MySQL
+    url: jdbc:h2:mem:bootexample;MODE=MySQL
 
 server:
   port: 8090
@@ -32,9 +32,9 @@ management:
 
 #default project info followed by actual injected pom-specified values.
 project:
-  name: spring-boot-rest-sample
+  name: spring-boot-rest-example
   version: 0.1
-  description: xservice-example default description
+  description: boot-example default description
 info:
   build:
     artifact: ${project.artifactId}

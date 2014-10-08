@@ -144,7 +144,7 @@ spring:
 
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://<your_mysql_host_or_ip>/xservicetest
+    url: jdbc:mysql://<your_mysql_host_or_ip>/bootexample
     username: <your_mysql_username>
     password: <your_mysql_password>
 

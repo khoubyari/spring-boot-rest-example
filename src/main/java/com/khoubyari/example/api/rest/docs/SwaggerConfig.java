@@ -9,15 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Created by skhoubyari on 7/30/14.
- */
+
 @Configuration
 @EnableSwagger
 @ComponentScan("com.khoubyari.example.api.rest")
 public class SwaggerConfig {
 
-    //public static final List<String> DEFAULT_INCLUDE_PATTERNS = Arrays.asList("/xservice/.*");
     public static final String DEFAULT_INCLUDE_PATTERNS = "/example/.*";
 
     private SpringSwaggerConfig springSwaggerConfig;
@@ -27,7 +24,7 @@ public class SwaggerConfig {
         this.springSwaggerConfig = springSwaggerConfig;
     }
 
-    @Bean //Don't forget the @Bean annotation
+    @Bean 
     public SwaggerSpringMvcPlugin customImplementation() {
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
                 .apiInfo(apiInfo())
