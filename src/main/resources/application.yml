@@ -11,8 +11,7 @@ spring:
 spring.jmx:
    enabled: false
 
-spring:
-  datasource:
+spring.datasource:
     driverClassName: org.h2.Driver
     url: jdbc:h2:mem:bootexample;MODE=MySQL
 
@@ -48,8 +47,7 @@ hotel.service:
 spring:
   profiles: test
 
-spring:
-  jpa:
+spring.jpa:
     hibernate.ddl-auto: create-drop
 
 hotel.service:
