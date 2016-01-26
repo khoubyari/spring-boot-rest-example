@@ -11,7 +11,7 @@ This application is packaged as a war which has Tomcat 7 embedded. No Tomcat or 
 * You can build the project and run the tests by running ```mvn clean package```
 * Once successfully built, you can run the service by one of these two methods:
 ```
-        java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.1.0.war
+        java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.2.0.war
 or
         mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 ```
@@ -161,7 +161,7 @@ hotel.service:
 ### Then run is using the 'mysql' profile:
 
 ```
-        java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.1.0.war
+        java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.2.0.war
 or
         mvn spring-boot:run -Drun.arguments="spring.profiles.active=mysql"
 ```
