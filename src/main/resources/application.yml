@@ -46,42 +46,9 @@ hotel.service:
 ---
 spring:
   profiles: test
-  jpa:
-      hibernate.ddl-auto: create-drop
-  jmx:
-   enabled: false
-  datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:bootexample;MODE=MySQL
 
-server:
-  port: 8090
-
-#todo: make sure to always enable security in production
-security:
-  basic:
-    enabled: false
-
-#management endpoints on a separate port
-management:
-  port: 8091
-  security:
-    enabled: false # management port is internal only. no need to secure it.
-
-#default project info followed by actual injected pom-specified values.
-project:
-  name: spring-boot-rest-example
-  version: 0.1
-  description: boot-example default description
-info:
-  build:
-    artifact: ${project.artifactId}
-    name: ${project.name}
-    description: ${project.description}
-    version: ${project.version}
+spring.jpa:
+    hibernate.ddl-auto: create-drop
 
 hotel.service:
-  name: 'test profile'
-
-
-
+  name: 'test profile:'
