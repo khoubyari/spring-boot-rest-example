@@ -2,12 +2,6 @@
 ### This fils is in Yaml format but you can also do this using the traditional
 ### Java properties file.
 
-spring:
-  profiles.active: default
----
-spring:
-  profiles: default   # this is for local development. For QA, Production override these values
-
 spring.jmx:
    enabled: false
 
