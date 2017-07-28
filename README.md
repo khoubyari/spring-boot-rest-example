@@ -2,16 +2,16 @@
 
 This is a sample Java / Maven / Spring Boot application that can be used as a starter for creating a microservice complete with built-in health check, metrics and much more. I hope it helps you.
 
-## How to Run 
+## How to Run
 
 This application is packaged as a war which has Tomcat 7 embedded. No Tomcat or JBoss installation is necessary. You run it using the ```java -jar``` command.
 
-* Clone this repository 
+* Clone this repository
 * Make sure you are using JDK 1.7 and Maven 3.x
 * You can build the project and run the tests by running ```mvn clean package```
 * Once successfully built, you can run the service by one of these two methods:
 ```
-        java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.2.0.war
+        java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.3.0.war
 or
         mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
 ```
@@ -31,18 +31,18 @@ The service is just a simple hotel review REST service. It uses an in-memory dat
 More interestingly, you can start calling some of the operational endpoints (see full list below) like ```/metrics``` and ```/health``` (these are available on **port 8091**)
 
 You can use this sample service to understand the conventions and configurations that allow you to create a DB-backed RESTful service. Once you understand and get comfortable with the sample app you can add your own services following the same patterns as the sample service.
- 
-Here is what this little application demonstrates: 
+
+Here is what this little application demonstrates:
 
 * Full integration with the latest **Spring** Framework: inversion of control, dependency injection, etc.
 * Packaging as a single war with embedded container (tomcat 7): No need to install a container separately on the host just run using the ``java -jar`` command
 * Demonstrates how to set up healthcheck, metrics, info, environment, etc. endpoints automatically on a configured port. Inject your own health / metrics info with a few lines of code.
 * Writing a RESTful service using annotation: supports both XML and JSON request / response; simply use desired ``Accept`` header in your request
 * Exception mapping from application exceptions to the right HTTP response with exception details in the body
-* *Spring Data* Integration with JPA/Hibernate with just a few lines of configuration and familiar annotations. 
+* *Spring Data* Integration with JPA/Hibernate with just a few lines of configuration and familiar annotations.
 * Automatic CRUD functionality against the data source using Spring *Repository* pattern
 * Demonstrates MockMVC test framework with associated libraries
-* All APIs are "self-documented" by Swagger using annotations 
+* All APIs are "self-documented" by Swagger using annotations
 
 Here are some endpoints you can call:
 
@@ -79,7 +79,7 @@ Location header: http://localhost:8090/example/v1/hotels/1
 http://localhost:8090/example/v1/hotels?page=0&size=10
 
 Response: HTTP 200
-Content: paginated list 
+Content: paginated list
 ```
 
 ### Update a hotel resource
@@ -90,6 +90,7 @@ Accept: application/json
 Content-Type: application/json
 
 {
+"id": 1,
 "name" : "Beds R Us",
 "description" : "Very basic, small rooms but clean",
 "city" : "Santa Ana",
@@ -122,11 +123,11 @@ Spring Boot is an "opinionated" application bootstrapping framework that makes i
 
 # Running the project with MySQL
 
-This project uses an in-memory database so that you don't have to install a database in order to run it. However, converting it to run with another relational database such as MySQL or PostgreSQL is very easy. Since the project uses Spring Data and the Repository pattern, it's even fairly easy to back the same service with MongoDB. 
+This project uses an in-memory database so that you don't have to install a database in order to run it. However, converting it to run with another relational database such as MySQL or PostgreSQL is very easy. Since the project uses Spring Data and the Repository pattern, it's even fairly easy to back the same service with MongoDB.
 
-Here is what you would do to back the services with MySQL, for example: 
+Here is what you would do to back the services with MySQL, for example:
 
-### In pom.xml add: 
+### In pom.xml add:
 
 ```
         <dependency>
@@ -135,7 +136,7 @@ Here is what you would do to back the services with MySQL, for example:
         </dependency>
 ```
 
-### Append this to the end of application.yml: 
+### Append this to the end of application.yml:
 
 ```
 ---
