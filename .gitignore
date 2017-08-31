@@ -10,4 +10,5 @@ dependency-reduced-pom.xml
 *.ipr
 *.iws
 *.idea
+*.log
 Thumbs.db

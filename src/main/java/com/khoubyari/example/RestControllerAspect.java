@@ -14,8 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class RestControllerAspect {
 
+    protected final Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Before("execution(public * com.khoubyari.example.api.rest.*Controller.*(..))")
     public void logBeforeRestCall(JoinPoint pjp) throws Throwable {
-        System.out.println(":::::AOP Before REST call:::::" + pjp);
+        log.info(":::::AOP Before REST call:::::" + pjp);
     }
 }

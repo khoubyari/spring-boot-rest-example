@@ -46,3 +46,7 @@ spring.jpa:
 
 hotel.service:
   name: 'test profile:'
+  
+logging:
+  file: boot_example.log
+  org.hibernate: INFO
