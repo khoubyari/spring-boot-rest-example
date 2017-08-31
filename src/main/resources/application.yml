@@ -1,6 +1,6 @@
 ### This is the main way to configure the application (other than annotations).
-### This fils is in Yaml format but you can also do this using the traditional
-### Java properties file.
+### This file is in Yaml format but you can also configure spring boot using the traditional
+### Java properties file format. 
 
 spring.jmx:
    enabled: false
@@ -40,6 +40,9 @@ hotel.service:
 ---
 spring:
   profiles: test
+  h2:
+    console:
+      enabled: true
 
 spring.jpa:
     hibernate.ddl-auto: create-drop
@@ -50,3 +53,5 @@ hotel.service:
 logging:
   file: boot_example.log
   org.hibernate: INFO
+
+ 
