@@ -98,6 +98,9 @@ Content-Type: application/json
 
 RESPONSE: HTTP 204 (No Content)
 ```
+### To view Swagger 2 API docs
+
+Run the server and browse to localhost:8090/swagger-ui.html
 
 # About Spring Boot
 
