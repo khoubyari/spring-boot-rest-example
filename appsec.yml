@@ -1,0 +1,12 @@
+version: 0.0
+
+os: linux
+
+hooks:
+
+
+AfterInstall:
+
+   - location: /home/ec2-user/coderun.sh
+
+     runas: root
