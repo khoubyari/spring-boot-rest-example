@@ -169,7 +169,7 @@ hotel.service:
 ```
         java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.4.0.war
 or
-        mvn spring-boot:run -Drun.arguments="spring.profiles.active=mysql"
+        mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=mysql"
 ```
 
 # Attaching to the app remotely from your IDE
