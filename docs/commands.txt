@@ -1,0 +1,6 @@
+Build - mvn clean install
+Added Dockerfile
+docker login --username=amitmindstix
+docker build -t amitmindstix/spring-boot-api-example .
+docker tag <46f89848bdeb> amitmindstix/spring-boot-api-example:v1
+docker push amitmindstix/spring-boot-api-example
