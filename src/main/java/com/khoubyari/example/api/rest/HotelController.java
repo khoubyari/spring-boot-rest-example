@@ -1,20 +1,26 @@
 package com.khoubyari.example.api.rest;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-
-import com.khoubyari.example.domain.Hotel;
-import com.khoubyari.example.exception.DataFormatException;
-import com.khoubyari.example.service.HotelService;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import com.khoubyari.example.domain.Hotel;
+import com.khoubyari.example.exception.DataFormatException;
+import com.khoubyari.example.service.HotelService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 
 /*
  * Demonstrates how to set up RESTful API endpoints using Spring MVC
@@ -67,7 +73,7 @@ public class HotelController extends AbstractRestHandler {
                              HttpServletRequest request, HttpServletResponse response) throws Exception {
         Hotel hotel = this.hotelService.getHotel(id);
         checkResourceFound(hotel);
-        //todo: http://goo.gl/6iNAkz
+        //TODO: http://goo.gl/6iNAkz
         return hotel;
     }
 
@@ -85,7 +91,7 @@ public class HotelController extends AbstractRestHandler {
         this.hotelService.updateHotel(hotel);
     }
 
-    //todo: @ApiImplicitParams, @ApiResponses
+    //TODO: @ApiImplicitParams, @ApiResponses
     @RequestMapping(value = "/{id}",
             method = RequestMethod.DELETE,
             produces = {"application/json", "application/xml"})
