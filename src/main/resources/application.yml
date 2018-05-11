@@ -9,6 +9,12 @@ spring.datasource:
     driverClassName: org.h2.Driver
     url: jdbc:h2:mem:bootexample;MODE=MySQL
 
+amazon:
+  dynamodb.endpoint: http://localhost:8000/
+  aws:
+    accesskey=jsa
+    secretkey=javasampleapproach
+
 server:
   port: 8090
 

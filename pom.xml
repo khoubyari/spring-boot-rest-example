@@ -56,6 +56,19 @@
 			<version>1.4.193</version>
 		</dependency>
 
+		<!-- dynamodb data access abstraction -->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-dynamodb</artifactId>
+			<version>1.11.34</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.derjust</groupId>
+			<artifactId>spring-data-dynamodb</artifactId>
+			<version>4.5.0</version>
+		</dependency>
+
 		<!-- spring-test, hamcrest, ... -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
