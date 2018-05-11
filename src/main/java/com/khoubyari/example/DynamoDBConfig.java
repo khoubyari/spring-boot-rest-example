@@ -12,7 +12,7 @@ import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import org.springframework.util.StringUtils;
 
 @Configuration
-@EnableDynamoDBRepositories(basePackages = "com.khoubyari.example.domain")
+@EnableDynamoDBRepositories(basePackages = "com.khoubyari.example.dao.dynamodb")
 public class DynamoDBConfig {
 
     @Value("${amazon.dynamodb.endpoint}")

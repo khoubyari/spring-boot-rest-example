@@ -9,7 +9,6 @@ import com.khoubyari.example.exception.DataFormatException;
 import com.khoubyari.example.service.CarService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +38,7 @@ public class CarController extends AbstractRestHandler {
         Car createdCar = this.carService.createCar(car);
         response.setHeader("Location", request.getRequestURL().append("/").append(createdCar.getId()).toString());
     }
-
+/*
     @RequestMapping(value = "",
             method = RequestMethod.GET,
             produces = {"application/json", "application/xml"})
@@ -54,7 +53,7 @@ public class CarController extends AbstractRestHandler {
                             HttpServletRequest request, HttpServletResponse response) {
         return this.carService.getAllCars(page, size);
     }
-
+*/
     @RequestMapping(value = "/{id}",
             method = RequestMethod.GET,
             produces = {"application/json", "application/xml"})
