@@ -51,11 +51,6 @@ public class TestBase {
         };
     }
 
-    protected long getResourceIdFromUrl(String locationUrl) {
-        String[] parts = locationUrl.split("/");
-        return Long.valueOf(parts[parts.length - 1]);
-    }
-
 
     @Test
     public void contextLoads() {

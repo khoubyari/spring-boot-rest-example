@@ -15,8 +15,7 @@ public class Car {
     public Car() {
     }
 
-    public Car(String id, String name, Integer year) {
-        this.id = id;
+    public Car(String name, Integer year) {
         this.name = name;
         this.year = year;
     }

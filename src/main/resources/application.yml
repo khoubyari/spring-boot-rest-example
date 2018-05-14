@@ -7,7 +7,7 @@ spring.jmx:
 
 spring.datasource:
     driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:bootexample;MODE=MySQL
+    url: jdbc:h2:mem:bootexample;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
 
 amazon:
   dynamodb.endpoint: http://localhost:8000/
