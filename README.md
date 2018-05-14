@@ -8,7 +8,7 @@ This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or 
 
 * Clone this repository 
 * Make sure you are using JDK 1.8 and Maven 3.x
-* You must either run DynamoDB locally (see below) or provide AWS DynamoDB credentials in the application.yaml file
+* You must either run DynamoDB locally (see below) or provide AWS DynamoDB credentials in the application.yml file
 * To run DynamoDB locally:
   * Install and run following these instructions: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
   * Create the "Car" table using the command:
@@ -30,6 +30,8 @@ Once the application runs you should see something like this
 
 The service is just a simple hotel review REST service. It uses an in-memory database (H2) to store the data. You can also do with a relational database like MySQL or PostgreSQL. If your database connection properties work, you can call some REST endpoints defined in ```com.khoubyari.example.api.rest.hotelController``` on **port 8090**. (see below)
 
+The updated version also adds another simple REST service for cars that is backed by **DynamoDB**. Once you set up DynamoDB locally (or configure remote access in the application.yml file), you can run the service and try both the /hotels (relational DB backing) and the /cars (DynamoDB backing). 
+
 More interestingly, you can start calling some of the operational endpoints (see full list below) like ```/metrics``` and ```/health``` (these are available on **port 8091**)
 
 You can use this sample service to understand the conventions and configurations that allow you to create a DB-backed RESTful service. Once you understand and get comfortable with the sample app you can add your own services following the same patterns as the sample service.
@@ -42,9 +44,10 @@ Here is what this little application demonstrates:
 * Writing a RESTful service using annotation: supports both XML and JSON request / response; simply use desired ``Accept`` header in your request
 * Exception mapping from application exceptions to the right HTTP response with exception details in the body
 * *Spring Data* Integration with JPA/Hibernate with just a few lines of configuration and familiar annotations. 
-* Automatic CRUD functionality against the data source using Spring *Repository* pattern
+* *DynamoDB* integration 
+* Automatic CRUD functionality against the data source using Spring *Repository* pattern (for both JPA and DynamoDB)
 * Demonstrates MockMVC test framework with associated libraries
-* All APIs are "self-documented" by Swagger2 using annotations 
+* All APIs are "self-documented" by *Swagger2* using annotations 
 
 Here are some endpoints you can call:
 
