@@ -12,8 +12,8 @@ spring.datasource:
 amazon:
   dynamodb.endpoint: http://localhost:8000/
   aws:
-    accesskey=jsa
-    secretkey=javasampleapproach
+    accesskey=put_access_key_here
+    secretkey=put_secret_key_here
 
 server:
   port: 8090

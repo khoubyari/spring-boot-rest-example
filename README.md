@@ -8,13 +8,15 @@ This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or 
 
 * Clone this repository 
 * Make sure you are using JDK 1.8 and Maven 3.x
-* You can build the project and run the tests by running ```mvn clean package```
+* You must either run DynamoDB locally (see below) or provide AWS DynamoDB credentials in the application.yaml file
+* To run DynamoDB locally:
+  * Install and run following these instructions: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
+  * Create the "Car" table using the command:
+    * ```aws dynamodb create-table --table-name Car --attribute-definitions AttributeName=Id,AttributeType=S --key-schema AttributeName=Id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --endpoint-url http://localhost:8000```
+* You can now build the project and run the tests by running ```mvn clean package```
 * Once successfully built, you can run the service by one of these two methods:
-```
-        java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.5.0.war
-or
-        mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"
-```
+  * ```java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.60.jar```
+  * ```mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"```
 * Check the stdout or boot_example.log file to make sure no exceptions are thrown
 
 Once the application runs you should see something like this
@@ -167,7 +169,7 @@ hotel.service:
 ### Then run is using the 'mysql' profile:
 
 ```
-        java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.5.0.war
+        java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.60.jar
 or
         mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=mysql"
 ```
@@ -179,7 +181,7 @@ Run the service with these command line options:
 ```
 mvn spring-boot:run -Drun.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=5005"
 or
-java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Dspring.profiles.active=test -Ddebug -jar target/spring-boot-rest-example-0.5.0.war
+java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Dspring.profiles.active=test -Ddebug -jar target/spring-boot-rest-example-0.60.jar
 ```
 and then you can connect to it remotely using your IDE. For example, from IntelliJ You have to add remote debug configuration: Edit configuration -> Remote.
 
