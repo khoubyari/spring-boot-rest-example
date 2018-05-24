@@ -189,8 +189,3 @@ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Dspring
 and then you can connect to it remotely using your IDE. For example, from IntelliJ You have to add remote debug configuration: Edit configuration -> Remote.
 
 # Questions and Comments: khoubyari@gmail.com
-
-
-
-
-
