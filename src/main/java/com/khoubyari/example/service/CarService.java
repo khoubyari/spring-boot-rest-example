@@ -5,8 +5,6 @@ import com.khoubyari.example.dao.dynamodb.CarRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.metrics.CounterService;
-import org.springframework.boot.actuate.metrics.GaugeService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -22,12 +20,6 @@ public class CarService {
     @Autowired
     private CarRepository carRepository;
 
-    @Autowired
-    CounterService counterService;
-
-    @Autowired
-    GaugeService gaugeService;
-
     public CarService() {
     }
 
@@ -36,7 +28,10 @@ public class CarService {
     }
 
     public Car getCar(String id) {
-        return carRepository.findOne(id);
+        if (carRepository.existsById(id)) {
+            return carRepository.findById(id).get();
+        }
+        return null;
     }
 
     public void updateCar(Car car) {
@@ -44,11 +39,11 @@ public class CarService {
     }
 
     public void deleteCar(String id) {
-        carRepository.delete(id);
+        carRepository.deleteById(id);
     }
 
     public Page<Car> getAllCars(Integer page, Integer size) {
-        Page pageOfCars = carRepository.findAll(new PageRequest(page, size));
+        Page pageOfCars = carRepository.findAll(PageRequest.of(page, size));
         return pageOfCars;
     }
 

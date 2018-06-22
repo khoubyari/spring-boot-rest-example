@@ -2,6 +2,9 @@
 ### This file is in Yaml format but you can also configure spring boot using the traditional
 ### Java properties file format. 
 
+# this was updated form Spring Boot 1.5 and some attributes had to be updated. See:
+# https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Configuration-Changelog
+
 spring.jmx:
    enabled: false
 
@@ -19,15 +22,19 @@ server:
   port: 8090
 
 #todo: make sure to always enable security in production
-security:
-  basic:
-    enabled: false
+#security:
+#  basic:
+#    enabled: false
+#  ignored: '/**'
 
 #management endpoints on a separate port
 management:
-  port: 8091
-  security:
-    enabled: false # management port is internal only. no need to secure it.
+  server:
+    port: 8091
+  endpoints:
+    web:
+      exposure:
+        include: '*'    #by default this would be health,info
 
 #default project info followed by actual injected pom-specified values.
 project:

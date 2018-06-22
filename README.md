@@ -54,10 +54,10 @@ Here are some endpoints you can call:
 ### Get information about system health, configurations, etc.
 
 ```
-http://localhost:8091/env
-http://localhost:8091/health
-http://localhost:8091/info
-http://localhost:8091/metrics
+http://localhost:8091/actuator/env
+http://localhost:8091/actuator/health
+http://localhost:8091/actuator/info
+http://localhost:8091/actuator/metrics
 ```
 
 ### Create a hotel resource
@@ -86,6 +86,8 @@ http://localhost:8090/example/v1/hotels?page=0&size=10
 Response: HTTP 200
 Content: paginated list 
 ```
+
+_Note: after upgrading to Spring Boot 2.0, the paginated JSON has some redundant information in it (see https://goo.gl/42UPmZ and https://goo.gl/HbLTTh)_
 
 ### Update a hotel resource
 
