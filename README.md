@@ -186,6 +186,3 @@ and then you can connect to it remotely using your IDE. For example, from Intell
 # Questions and Comments: khoubyari@gmail.com
 
 
-
-
-
