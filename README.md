@@ -8,14 +8,15 @@ This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or 
 
 * Clone this repository 
 * Make sure you are using JDK 1.8 and Maven 3.x
-* You must either run DynamoDB locally (see below) or provide AWS DynamoDB credentials in the application.yml file
-* To run DynamoDB locally:
-  * Install and run following these instructions: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
-  * Create the "Car" table using the command:
-    * ```aws dynamodb create-table --table-name Car --attribute-definitions AttributeName=Id,AttributeType=S --key-schema AttributeName=Id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --endpoint-url http://localhost:8000```
 * You can now build the project and run the tests by running ```mvn clean package```
+* **_NEW:_** This sample project has a new ```/cars``` service backed by Amazon **DynamoDB**. Running in "test" profile means you have to run DynamoDB locally (and create the ```Car``` table) before running this project. 
+  * The maven build downloads and runs DynamoDB locally for the the **unit tests** only. For unit tests you don't have to run DynamoDB separately. 
+  * To try the new ```/cars``` API on the running server you need to first run DynamoDB locally:
+    * Install and run following these instructions: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
+    * Create the ```Car``` table using the AWS cli command:
+      * ```aws dynamodb create-table --table-name Car --attribute-definitions AttributeName=Id,AttributeType=S --key-schema AttributeName=Id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --endpoint-url http://localhost:8000```
 * Once successfully built, you can run the service by one of these two methods:
-  * ```java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.60.jar```
+  * ```java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.7.2.jar```
   * ```mvn spring-boot:run -Drun.arguments="spring.profiles.active=test"```
 * Check the stdout or boot_example.log file to make sure no exceptions are thrown
 
@@ -38,14 +39,13 @@ You can use this sample service to understand the conventions and configurations
  
 Here is what this little application demonstrates: 
 
-* Full integration with the latest **Spring** Framework: inversion of control, dependency injection, etc.
+* Full integration with the latest **Spring Boot** Framework: inversion of control, dependency injection, etc.
 * Packaging as a single war with embedded container (tomcat 8): No need to install a container separately on the host just run using the ``java -jar`` command
 * Demonstrates how to set up healthcheck, metrics, info, environment, etc. endpoints automatically on a configured port. Inject your own health / metrics info with a few lines of code.
 * Writing a RESTful service using annotation: supports both XML and JSON request / response; simply use desired ``Accept`` header in your request
 * Exception mapping from application exceptions to the right HTTP response with exception details in the body
-* *Spring Data* Integration with JPA/Hibernate with just a few lines of configuration and familiar annotations. 
-* *DynamoDB* integration 
-* Automatic CRUD functionality against the data source using Spring *Repository* pattern (for both JPA and DynamoDB)
+* *Spring Data* (JPA) Integration with JPA/Hibernate with just a few lines of configuration and familiar annotations. 
+* *DynamoDB* integration * Automatic CRUD functionality against the data source using Spring *Repository* pattern (for both JPA and DynamoDB)
 * Demonstrates MockMVC test framework with associated libraries
 * All APIs are "self-documented" by *Swagger2* using annotations 
 
@@ -168,13 +168,13 @@ spring:
 
 
 hotel.service:
-  name: 'test profile:'
+  name: 'mysql profile:'
 ```
 
 ### Then run is using the 'mysql' profile:
 
 ```
-        java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.60.jar
+        java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.7.2.jar
 or
         mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=mysql"
 ```

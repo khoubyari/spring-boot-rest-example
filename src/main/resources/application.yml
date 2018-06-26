@@ -2,32 +2,16 @@
 ### This file is in Yaml format but you can also configure spring boot using the traditional
 ### Java properties file format. 
 
-# this was updated form Spring Boot 1.5 and some attributes had to be updated. See:
+# this project was upgraded form Spring Boot 1.5 and some attribute names had to be updated. See:
 # https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.0-Configuration-Changelog
 
 spring.jmx:
    enabled: false
 
-spring.datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:bootexample;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
-
-amazon:
-  dynamodb.endpoint: http://localhost:8000/
-  aws:
-    accesskey=put_access_key_here
-    secretkey=put_secret_key_here
-
 server:
   port: 8090
 
-#todo: make sure to always enable security in production
-#security:
-#  basic:
-#    enabled: false
-#  ignored: '/**'
-
-#management endpoints on a separate port
+# run management (actuator) endpoints on a separate port
 management:
   server:
     port: 8091
@@ -39,7 +23,7 @@ management:
 #default project info followed by actual injected pom-specified values.
 project:
   name: spring-boot-rest-example
-  version: 0.1
+  version: 0.7
   description: boot-example default description
 info:
   build:
@@ -66,5 +50,16 @@ hotel.service:
 logging:
   file: boot_example.log
   org.hibernate: INFO
+
+spring.datasource:
+    driverClassName: org.h2.Driver
+    url: jdbc:h2:mem:bootexample;MODE=MySQL;DB_CLOSE_ON_EXIT=FALSE
+
+amazon:
+  dynamodb.endpoint: http://localhost:8000/
+  aws:
+    accesskey=put_access_key_here
+    secretkey=put_secret_key_here
+
 
  

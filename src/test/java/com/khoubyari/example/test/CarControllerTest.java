@@ -1,7 +1,11 @@
 package com.khoubyari.example.test;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.khoubyari.example.dao.dynamodb.CarRepository;
 import com.khoubyari.example.domain.Car;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -18,8 +22,31 @@ public class CarControllerTest extends TestBase {
 
     protected static final String RESOURCE_LOCATION_PATTERN = "http://localhost/example/v1/cars/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}";
 
+    private static final long CAPACITY = 5L;
+
     @Autowired
     CarRepository carRepository;
+
+    @Autowired
+    private AmazonDynamoDB amazonDynamoDB;
+
+
+    @Before
+    public void init() throws Exception {
+
+        String carTableName = "Car"; // todo: use AnnotationUtils instead to discover the from Car.java
+
+        // Delete Car table in case it exists
+        amazonDynamoDB.listTables().getTableNames().stream().
+                filter(tableName -> tableName.equals(carTableName)).forEach(tableName -> {
+            amazonDynamoDB.deleteTable(tableName);
+        });
+
+        //Create Car table
+        amazonDynamoDB.createTable(new DynamoDBMapper(amazonDynamoDB)
+                .generateCreateTableRequest(Car.class)
+                .withProvisionedThroughput(new ProvisionedThroughput(CAPACITY, CAPACITY)));
+    }
 
     @Test
     public void shouldCreateRetrieveDelete() throws Exception {

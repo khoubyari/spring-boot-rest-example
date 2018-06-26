@@ -5,7 +5,7 @@
 
 	<groupId>com.khoubyari</groupId>
 	<artifactId>spring-boot-rest-example</artifactId>
-	<version>0.7.1</version>
+	<version>0.7.2</version>
 	<packaging>jar</packaging>
 	<description>Example project demonstrating REST APIs implemented using Spring Boot, in-memory database, embedded Tomcat, Swagger, JsonPath, Hamcrest and MockMVC</description>
 
@@ -17,6 +17,8 @@
 
 	<properties>
 		<start-class>com.khoubyari.example.Application</start-class>
+		<aws.s3.region>us-west-2</aws.s3.region>
+		<dynamodblocal.port>8000</dynamodblocal.port>
 	</properties>
 
 	<dependencies>
@@ -150,6 +152,103 @@
 				<configuration>
 					<addResources>false</addResources>
 				</configuration>
+			</plugin>
+
+			<!-- Download DynamoDB local for local unit testing. Based on: https://goo.gl/8hFpdU -->
+
+			<plugin>
+				<groupId>com.googlecode.maven-download-plugin</groupId>
+				<artifactId>download-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<id>install-dynamodb_local</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>wget</goal>
+						</goals>
+						<configuration>
+							<url>https://s3-${aws.s3.region}.amazonaws.com/dynamodb-local/dynamodb_local_latest.zip</url>
+							<unpack>true</unpack>
+							<outputDirectory>${project.build.directory}/dynamodb</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Start DynamoDB locally -->
+
+			<plugin>
+				<groupId>com.bazaarvoice.maven.plugins</groupId>
+				<artifactId>process-exec-maven-plugin</artifactId>
+				<version>0.7</version>
+				<executions>
+					<execution>
+						<id>dynamodb_local</id>
+						<phase>test-compile</phase>
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<name>dynamodb_local</name>
+							<!--
+                            We need to let DynamoDB finish starting, but don't have
+                            a good semamore.  It's pretty quick to start, so 1 second
+                            should suffice.
+                            -->
+							<waitAfterLaunch>1</waitAfterLaunch>
+							<arguments>
+								<argument>java</argument>
+								<argument>-Djava.library.path=dynamodb/DynamoDBLocal_lib</argument>
+								<argument>-jar</argument>
+								<argument>dynamodb/DynamoDBLocal.jar</argument>
+								<!--
+                                Use the port that was reserved in step 2
+                                -->
+								<argument>-port</argument>
+								<argument>${dynamodblocal.port}</argument>
+								<!--
+                                You run your tests in parallel, right?
+                                -->
+								<argument>-sharedDb</argument>
+								<!--
+                                Remove this to keep data between restarts of the process.
+                                -->
+								<argument>-inMemory</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.bazaarvoice.maven.plugins</groupId>
+				<artifactId>process-exec-maven-plugin</artifactId>
+				<version>0.7</version>
+				<executions>
+					<execution>
+						<id>dynamodb_local</id>
+						<phase>test-compile</phase>
+						<!--<phase>pre-integration-test</phase>-->
+						<goals>
+							<goal>start</goal>
+						</goals>
+						<configuration>
+							<name>dynamodb_local</name>
+							<waitAfterLaunch>1</waitAfterLaunch>
+							<arguments>
+								<argument>java</argument>
+								<argument>-Djava.library.path=dynamodb/DynamoDBLocal_lib</argument>
+								<argument>-jar</argument>
+								<argument>dynamodb/DynamoDBLocal.jar</argument>
+								<argument>-port</argument>
+								<argument>${dynamodblocal.port}</argument>
+								<argument>-sharedDb</argument>
+								<argument>-inMemory</argument>
+							</arguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
