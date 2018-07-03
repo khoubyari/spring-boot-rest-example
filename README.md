@@ -13,7 +13,7 @@ This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or 
   * The maven build downloads and runs DynamoDB locally for the the **unit tests** only. For unit tests you don't have to run DynamoDB separately. 
   * To try the new ```/cars``` API on the running server you need to first run DynamoDB locally:
     * Install and run following these instructions: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html
-    * Create the ```Car``` table using the AWS cli command:
+    * Create the ```Car``` table using the [AWS cli](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) command:
       * ```aws dynamodb create-table --table-name Car --attribute-definitions AttributeName=Id,AttributeType=S --key-schema AttributeName=Id,KeyType=HASH --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 --endpoint-url http://localhost:8000```
 * Once successfully built, you can run the service by one of these two methods:
   * ```java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.7.2.jar```
