@@ -6,11 +6,11 @@ node {
     stage('Checkout code') { // for display purposes
         // Get some code from a GitHub repository
 		//CHANGE THE REPOSITORY PATH
-        //git 'https://github.com/vardansavarde/SimpleJavaWebApp.git'
+        //git 'https://github.com/vardansavarde/spring-boot-rest-example.git'
 		//USE FOLLOWING IF YOUR REPOSITORY REQUIRES AUTHENTICATION
 		//YOU WILL HAVE TO CONFIGURE USERNAME/PASSWORD CREDENTIALS
 		//IN 'MANAGE CREDENTIALS' SECTION OF JENKINS
-		git credentialsId: 'vardangit', poll: false, url: 'https://github.com/vardansavarde/SimpleJavaWebApp.git'
+		git credentialsId: 'vardangit', poll: false, url: 'https://github.com/vardansavarde/spring-boot-rest-example.git'
         // Get the Maven tool.
 		//THE MAVEN TOOL MUST BE CONFIGURED IN SYSTEM TOOLS CONFIGURATION
 		//OF JENKINS
