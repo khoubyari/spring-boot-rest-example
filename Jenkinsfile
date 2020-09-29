@@ -28,7 +28,7 @@ node {
     }
 		stage('SonarQube analysis') {
 	    def scannerHome = tool name: 'SonarScanner-PermNode', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
-	    withSonarQubeEnv(credentialsId: 'f76cad53-7e51-4403-b70f-3c3446d23a7b',installationName:'My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
+	    withSonarQubeEnv(credentialsId: 'f76cad53-7e51-4403-b70f-3c3446d23a7b',installationName:'SonarScanner-PermNode') { // If you have configured more than one global server connection, you can specify its name
 	      sh "${scannerHome}/bin/sonar-scanner"
 	    }
 	  }
