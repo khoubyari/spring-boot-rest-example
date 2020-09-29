@@ -26,9 +26,26 @@ node {
             }
         }
     }
-    stage('Archive Results') {
-        junit allowEmptyResults: true,testResults: '**/target/surefire-reports/TEST-*.xml'
-		//CHANGE THE ARCHIVE EXTENSION IF REQUIRED
-        archiveArtifacts 'target/*.war'
+		stage('SonarQube analysis') {
+	    def scannerHome = tool name: 'SonarScanner-PermNode', type: 'hudson.plugins.sonar.SonarRunnerInstallation';
+	    withSonarQubeEnv(credentialsId: 'f76cad53-7e51-4403-b70f-3c3446d23a7b',installationName:'My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
+	      sh "${scannerHome}/bin/sonar-scanner"
+	    }
+	  }
+}
+// No need to occupy a node
+stage("Quality Gate"){
+  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+    def qg = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+    if (qg.status != 'OK') {
+      error "Pipeline aborted due to quality gate failure: ${qg.status}"
     }
+  }
+}
+node{
+	stage('Archive Results') {
+			junit allowEmptyResults: true,testResults: '**/target/surefire-reports/TEST-*.xml'
+	//CHANGE THE ARCHIVE EXTENSION IF REQUIRED
+			archiveArtifacts 'target/*.war'
+	}
 }
