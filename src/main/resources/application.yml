@@ -40,6 +40,8 @@ hotel.service:
 ---
 spring:
   profiles: test
+  datasource:
+    platform: h2
   h2:
     console:
       enabled: true
