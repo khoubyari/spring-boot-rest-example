@@ -1,0 +1,21 @@
+version: "3.4"
+services:
+  spring-boot-rest-example:
+    image: maven:3.5.3-jdk-8-alpine
+    working_dir: /app
+    volumes:
+      # this mounts the maven repo from your machine into the container so
+      # maven doesn't need to "download the internet" every time you
+      # restart the container
+      - ~/.m2/repository:/root/.m2/repository
+      - .:/app
+    ports:
+      - 8090:8090
+      - 8091:8091
+    command:
+      [
+        "mvn",
+        "clean",
+        "spring-boot:run",
+        "-Dspring.profiles.active=test"
+      ]

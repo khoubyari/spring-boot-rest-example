@@ -17,6 +17,18 @@ or
 ```
 * Check the stdout or boot_example.log file to make sure no exceptions are thrown
 
+You can also use docker-compose:
+
+First create an empty Maven repository directory if you don't already have one:
+```
+mkdir -p ~/.m2/repository
+```
+
+Then run the app:
+```
+docker-compose up
+```
+
 Once the application runs you should see something like this
 
 ```
