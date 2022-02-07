@@ -1,3 +1,4 @@
+# Build container
 FROM maven:3.5-jdk-8 as BUILD
 WORKDIR /usr/src/myapp 
 COPY src /usr/src/myapp/src
