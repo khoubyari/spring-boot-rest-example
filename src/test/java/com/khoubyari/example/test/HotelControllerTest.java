@@ -136,7 +136,7 @@ JSONAssert.assertEquals(
         mvc.perform(get("/example/v1/hotels/" + id)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is((String) id)))
+                .andExpect(jsonPath("$.id", is((int) id)))
                 .andExpect(jsonPath("$.name", is(r2.getName())))
                 .andExpect(jsonPath("$.city", is(r2.getCity())))
                 .andExpect(jsonPath("$.description", is(r2.getDescription())))
