@@ -5,6 +5,7 @@ COPY src /usr/src/myapp/src
 COPY pom.xml /usr/src/myapp
 RUN mvn clean package
 
+# Application container
 FROM openjdk:8-jre-slim-buster
 WORKDIR /
 EXPOSE 8091
