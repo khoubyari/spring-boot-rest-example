@@ -3,6 +3,7 @@ FROM maven:3.5-jdk-8 as BUILD
 WORKDIR /usr/src/myapp 
 COPY src /usr/src/myapp/src
 COPY pom.xml /usr/src/myapp
+# building with  unit tests
 RUN mvn clean package
 
 # Application container
