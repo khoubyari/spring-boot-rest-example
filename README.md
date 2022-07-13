@@ -183,6 +183,10 @@ java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Dspring
 ```
 and then you can connect to it remotely using your IDE. For example, from IntelliJ You have to add remote debug configuration: Edit configuration -> Remote.
 
+# Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=khoubyari/spring-boot-rest-example&type=Date)](https://star-history.com/#khoubyari/spring-boot-rest-example&Date)
+
 # Questions and Comments: khoubyari@gmail.com
 
 
