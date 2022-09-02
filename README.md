@@ -12,10 +12,16 @@ This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or 
 * Once successfully built, you can run the service by one of these two methods:
 ```
         java -jar -Dspring.profiles.active=test target/spring-boot-rest-example-0.5.0.war
+```
+
 or
+
+```
         mvn spring-boot:run -D"spring.profiles.active=test"
 ```
 * Check the stdout or boot_example.log file to make sure no exceptions are thrown
+
+### docker-compose
 
 You can also use docker-compose:
 
@@ -24,16 +30,28 @@ First create an empty Maven repository directory if you don't already have one:
 mkdir -p ~/.m2/repository
 ```
 
-Then run the app:
+Then run the app by specifying the docker-compose.yml file in `.devcontainer`:
 ```
-docker-compose up
+docker-compose -f ./.devcontainer/docker-compose.yml up --remove-orphans
 ```
+
+### Dev Containers
+
+You can also run this with VSCode/Github [Codespaces](https://docs.github.com/en/enterprise-cloud@latest/codespaces/developing-in-codespaces/codespaces-lifecycle)!  Enjoy.
+
+### Quick Test
 
 Once the application runs you should see something like this
 
 ```
 2017-08-29 17:31:23.091  INFO 19387 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8090 (http)
 2017-08-29 17:31:23.097  INFO 19387 --- [           main] com.khoubyari.example.Application        : Started Application in 22.285 seconds (JVM running for 23.032)
+```
+
+You can run a quick test with this: 
+```
+curl --location --request GET 'http://localhost:8090/example/v1/hotels?page=0&size=10' \
+--header 'Accept: application/json'
 ```
 
 ## About the Service

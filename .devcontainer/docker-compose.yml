@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        # Update the VARIANT arg to pick a Java version: 8, 11, 17
+        # Append -bullseye or -buster to pin to an OS version.
+        # Use the -bullseye variants on local arm64/Apple Silicon..
+        VARIANT: "11-buster"
+
+        # Options
+        INSTALL_MAVEN: "true"
+        MAVEN_VERSIO": "3.8.5"
+        INSTALL_GRADLE: "false"
+        NODE_VERSION: "lts/*"
+
+    volumes:
+      - ..:/workspace:cached
+      # this mounts the maven repo from your machine into the container so
+      # maven doesn't need to "download the internet" every time you
+      # restart the container
+      - ~/.m2/repository:/root/.m2/repository
+
+    # Overrides default command so things don't shut down after the process ends.
+    # command: sleep infinity
+    command: mvn spring-boot:run -D"spring.profiles.active=test"
+
+
+    # Runs app on the same network as the database container, allows "forwardPorts" in devcontainer.json function.
+    # network_mode: service:db
+
+    # Uncomment the next line to use a non-root user for all processes.
+    # user: vscode
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+    # leaving it here in case someone wants to use raw docker-compose
+    ports:
+      - 8090:8090
+      - 8091:8091
