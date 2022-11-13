@@ -37,6 +37,7 @@ public class HotelController extends AbstractRestHandler {
     public void createHotel(@RequestBody Hotel hotel,
                                  HttpServletRequest request, HttpServletResponse response) {
         Hotel createdHotel = this.hotelService.createHotel(hotel);
+        System.out.println("Checking git command");
         response.setHeader("Location", request.getRequestURL().append("/").append(createdHotel.getId()).toString());
     }
 
