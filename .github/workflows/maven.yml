@@ -34,6 +34,25 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+  
+    - name: get OpenAPI file
+      # You may pin to the exact commit or the version.
+      # uses: GenesisSam/get-simple-file-action@6979f8ef3887e96d6e1505bcb059ec71cedf522e
+      uses: GenesisSam/get-simple-file-action@v1.0.5
+      with:
+        # path name with file name (e.g. 'version', 'tmp/version')
+        file-name: openapi.yaml
+  
+    - name: Get JSON Property (v2)
+    # You may pin to the exact commit or the version.
+    # uses: thiagomoreirac/github-action-json-property@e258fde27f5c7944caee0764979a09be73429013
+      uses: thiagomoreirac/github-action-json-property@v0.1.3-beta
+      with:
+        # path to json file
+        path: openapi.yaml
+        # dot separated property key (e.g.: scripts.build)
+        prop_path: test 
+    
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
