@@ -35,14 +35,26 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
   
-    - name: get OpenAPI file
+  # Validations
+      # If file exsits
+    - name: If OpenAPI file exists
       # You may pin to the exact commit or the version.
       # uses: GenesisSam/get-simple-file-action@6979f8ef3887e96d6e1505bcb059ec71cedf522e
       uses: GenesisSam/get-simple-file-action@v1.0.5
       with:
         # path name with file name (e.g. 'version', 'tmp/version')
         file-name: openapi.yaml
-  
+
+    - name: Get YAML value
+      # You may pin to the exact commit or the version.
+      # uses: rmeneely/get-yaml-value@5f6f7ebc32064dbd7a76ea55dcaffd8ba5eea780
+      uses: rmeneely/get-yaml-value@v1
+      with:
+        # The YAML file to be updated
+        infile: openapi.yaml
+        # Comma separated list of var=value
+        varlist: paths
+
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
