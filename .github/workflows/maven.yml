@@ -74,7 +74,7 @@ jobs:
       uses: bjerkio/swagger-codegen-action@v1
       with:
         # Arguments
-        args: generate -i openapi.yaml -l java
+        args: -i openapi.yaml -l java
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
