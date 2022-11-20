@@ -45,15 +45,15 @@ jobs:
         # path name with file name (e.g. 'version', 'tmp/version')
         file-name: openapi.yaml
 
-    - name: Validate Swagger and OpenAPI using Swagger CLI
-      # You may pin to the exact commit or the version.
-      # uses: mbowman100/swagger-validator-action@9da850f22c24a4a9f0120e0d38518262b5a3afc6
-      uses: mbowman100/swagger-validator-action@2.0
-      with:
-        # List of Swagger/OpenAPI file(s) to validate. Seperate each file with a new line or a space.
-        files: openapi.yaml
-        # Defaults to true.
-        space_separated: true
+ #   - name: Validate Swagger and OpenAPI using Swagger CLI
+  #    # You may pin to the exact commit or the version.
+   #   # uses: mbowman100/swagger-validator-action@9da850f22c24a4a9f0120e0d38518262b5a3afc6
+    #  uses: mbowman100/swagger-validator-action@2.0
+     # with:
+      #  # List of Swagger/OpenAPI file(s) to validate. Seperate each file with a new line or a space.
+       # files: openapi.yaml
+       # # Defaults to true.
+        #space_separated: true
 
       
     - name: Get YAML value
