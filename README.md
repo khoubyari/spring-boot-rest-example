@@ -1,6 +1,8 @@
-# Spring Boot "Microservice" Example Project
+# Spring Boot "Microservice" Project
 
 This is a sample Java / Maven / Spring Boot (version 1.5.6) application that can be used as a starter for creating a microservice complete with built-in health check, metrics and much more. I hope it helps you.
+
+[![Java CI with Maven](https://github.com/marikpwc/spring-boot-rest/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/marikpwc/spring-boot-rest/actions/workflows/maven.yml)
 
 ## How to Run 
 
