@@ -44,7 +44,7 @@ jobs:
       uses: bjerkio/swagger-codegen-action@v1
       with:
         # Arguments
-        args: generate -i https://petstore.swagger.io/v2/swagger.json -l java -o samples/client/petstore/java
+        args: java -jar swagger-codegen-cli-2.2.1.jar generate -i http://petstore.swagger.io/v2/swagger.json
 
 
 ######## Spectral ########
