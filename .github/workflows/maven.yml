@@ -35,39 +35,17 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
   
-######## Validations ########
-
-      # If file exsits
-    - name: If OpenAPI file exists
-      # You may pin to the exact commit or the version.
-      # uses: GenesisSam/get-simple-file-action@6979f8ef3887e96d6e1505bcb059ec71cedf522e
-      uses: GenesisSam/get-simple-file-action@v1.0.5
-      with:
-        # path name with file name (e.g. 'version', 'tmp/version')
-        file-name: openapi.yaml
-
- #   - name: Validate Swagger and OpenAPI using Swagger CLI
-  #    # You may pin to the exact commit or the version.
-   #   # uses: mbowman100/swagger-validator-action@9da850f22c24a4a9f0120e0d38518262b5a3afc6
-    #  uses: mbowman100/swagger-validator-action@2.0
-     # with:
-      #  # List of Swagger/OpenAPI file(s) to validate. Seperate each file with a new line or a space.
-       # files: openapi.yaml
-       # # Defaults to true.
-        #space_separated: true
-
-      
-    - name: Get YAML value
-      # You may pin to the exact commit or the version.
-      # uses: rmeneely/get-yaml-value@5f6f7ebc32064dbd7a76ea55dcaffd8ba5eea780
-      uses: rmeneely/get-yaml-value@v1
-      with:
-        # The YAML file to be updated
-        infile: openapi.yaml
-        # Comma separated list of var=value
-        varlist: paths
 
 ######## Codegen ########
+
+    - name: Swagger Codegen
+      # You may pin to the exact commit or the version.
+      # uses: bjerkio/swagger-codegen-action@22db9a73c06c0523d341a4a32e4e15facd0d34e4
+      uses: bjerkio/swagger-codegen-action@v1
+      with:
+        # Arguments
+        args: generate -i https://petstore.swagger.io/v2/swagger.json -l java -o samples/client/petstore/java
+
 
 ######## Spectral ########
 
