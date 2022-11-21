@@ -1,0 +1,8 @@
+rules:
+  tag-description:
+    description: Please provide a description for each tag.
+    documentationUrl: https://www.example.com/docs/tag-description.md
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
