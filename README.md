@@ -150,7 +150,7 @@ spring:
 
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://<your_mysql_host_or_ip>/bootexample
+    url: jdbc:mysql://<your_mysql_host_or_ip>/bootexample?autoReconnect=true&useSSL=false
     username: <your_mysql_username>
     password: <your_mysql_password>
 
@@ -164,12 +164,29 @@ hotel.service:
   name: 'test profile:'
 ```
 
+
 ### Then run is using the 'mysql' profile:
 
 ```
         java -jar -Dspring.profiles.active=mysql target/spring-boot-rest-example-0.5.0.war
 or
         mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=mysql"
+```
+
+### Troubleshooting
+
+- If the application is unable to connect with MySQL and throws below error 
+
+```
+ERROR metabase.driver :: Failed to connect to database: java.sql.SQLException: Unable to load authentication plugin
+```
+
+### Solution
+
+Alter the user which is given to application by below command
+
+```
+ALTER USER '<your application user>'@'%' IDENTIFIED WITH mysql_native_password BY '<Your application user password>';
 ```
 
 # Attaching to the app remotely from your IDE
