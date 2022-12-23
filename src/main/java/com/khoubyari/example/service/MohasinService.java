@@ -29,22 +29,7 @@ public class MohasinService {
 
     public String notificationDataMapConverter(String url, List<NotificationData> notificationData) {
         
-        
-        Template1 template1 = new Template1();
-
-        template1.setAlertTypeCode(url)
-
-        for(int i=0; i<notificationData.size(); i++){
-            switch(notificationData.get(i).key){
-                case "updatedInfo":
-                 Type listType = new TypeToken<ArrayList<UpdatedInfoItem>>(){}.getType();
-                 List<UpdatedInfoItem> test = new Gson().fromJson(notificationData.get(i).value, listType);
-                 template1.setUpdatedInfo(test);
-                 break;
-                case "firstName":
-                 template1.setFirstName(notificationData.get(i).value);
-            }
-        }
+        responseConverterUtility.test(url, notificationData);
 
         Gson gson = new GsonBuilder().disableHtmlEscaping().create();
         String output = gson.toJson(gson.toJson(template1));
