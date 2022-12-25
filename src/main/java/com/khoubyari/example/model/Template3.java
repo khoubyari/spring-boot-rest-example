@@ -1,3 +1,8 @@
+package com.khoubyari.example.model;
+
+import java.io.Serializable;
+import java.util.List;
+
 public class Template3 implements Serializable {
 
     public String firstName;
@@ -6,7 +11,7 @@ public class Template3 implements Serializable {
 
     public List<TestItem> testItems;
 
-    public String getfirstName() { return firstName; }
+    public String getFirstName() { return firstName; }
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
 

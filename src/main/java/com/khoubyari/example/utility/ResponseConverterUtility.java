@@ -1,7 +1,19 @@
-class ResponseConverterUtility {
+package com.khoubyari.example.utility;
 
-    public void test(String templateType, List<NotificationData> notificationData){
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.khoubyari.example.model.*;
+import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+@Component
+public class ResponseConverterUtility {
+
+    //how in java to return different ObjectTypes in a method?? this Object returns NULL value //Vijay
+    public Object test(String templateType, List<NotificationData> notificationData){
         switch(templateType){
             case "abc":
             executeTemplate1(templateType, notificationData);
@@ -14,12 +26,14 @@ class ResponseConverterUtility {
             break;
         }
         
-    
+    return null;
     }
 
-    private void executeTemplate1(){
+    //how to refactor this common executeTemplate1, 2, 3 into a generic function ?? //VIJAY
+
+    private Template1 executeTemplate1(String templateType, List<NotificationData> notificationData){
         Template1 template1 = new Template1();
-        template1.setAlertTypeCode(url);
+        template1.setAlertTypeCode(templateType);
 
         for(int i=0; i<notificationData.size(); i++){
             switch(notificationData.get(i).key){
@@ -33,12 +47,14 @@ class ResponseConverterUtility {
                     break;
             }
         }
+
+        return template1;
     }
 
 
-    private void executeTemplate2(){
+    private Template2 executeTemplate2(String templateType, List<NotificationData> notificationData){
         Template2 template2 = new Template2();
-        template2.setAlertTypeCode(url);
+        template2.setAlertTypeCode(templateType);
 
         for(int i=0; i<notificationData.size(); i++){
             switch(notificationData.get(i).key){
@@ -52,11 +68,12 @@ class ResponseConverterUtility {
                     break;
             }
         }
+        return template2;
     }
 
-    private void executeTemplate3(){
+    private Template3 executeTemplate3(String templateType, List<NotificationData> notificationData){
         Template3 template3 = new Template3();
-        template3.setAlertTypeCode(url);
+        template3.setAlertTypeCode(templateType);
 
         for(int i=0; i<notificationData.size(); i++){
             switch(notificationData.get(i).key){
@@ -70,6 +87,7 @@ class ResponseConverterUtility {
                     break;
             }
         }
+        return template3;
     }
 
 

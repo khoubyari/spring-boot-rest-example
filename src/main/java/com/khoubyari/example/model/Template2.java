@@ -1,3 +1,9 @@
+package com.khoubyari.example.model;
+
+
+import java.io.Serializable;
+import java.util.List;
+
 public class Template2 implements Serializable {
 
     public String firstName;
@@ -6,7 +12,7 @@ public class Template2 implements Serializable {
 
     public List<CardholderName> cardholderNames;
 
-    public String getfirstName() { return firstName; }
+    public String getFirstName() { return firstName; }
 
     public void setFirstName(String firstName) { this.firstName = firstName; }
 
@@ -14,7 +20,7 @@ public class Template2 implements Serializable {
 
     public void setAlertTypeCode(String alertTypeCode) { this.alertTypeCode = alertTypeCode; }
 
-    public List<CardholderName> getCardholderNames() { return CardholderNames; }
+    public List<CardholderName> getCardholderNames() { return cardholderNames; }
 
     public void setCardholderNames(List<CardholderName> cardholderNames) { this.cardholderNames = cardholderNames; }
 
