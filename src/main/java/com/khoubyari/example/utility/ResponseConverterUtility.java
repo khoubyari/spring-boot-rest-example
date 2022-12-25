@@ -29,21 +29,21 @@ public class ResponseConverterUtility {
     return null;
     }
 
-    //how to refactor this common executeTemplate1, 2, 3 into a generic function ?? //VIJAY
+    //how to refactor this common executeTemplate1, executeTemplate2, executeTemplate3 into a generic function ?? //VIJAY
 
     private Template1 executeTemplate1(String templateType, List<NotificationData> notificationData){
         Template1 template1 = new Template1();
         template1.setAlertTypeCode(templateType);
 
         for(int i=0; i<notificationData.size(); i++){
-            switch(notificationData.get(i).key){
+            switch(notificationData.get(i).getKey()){
                 case "updatedInfo":
                     Type listType = new TypeToken<ArrayList<UpdatedInfoItem>>(){}.getType();
-                    List<UpdatedInfoItem> test = new Gson().fromJson(notificationData.get(i).value, listType);
+                    List<UpdatedInfoItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
                     template1.setUpdatedInfo(test);
                     break;
                 case "firstName":
-                    template1.setFirstName(notificationData.get(i).value);
+                    template1.setFirstName(notificationData.get(i).getValue());
                     break;
             }
         }
@@ -57,33 +57,34 @@ public class ResponseConverterUtility {
         template2.setAlertTypeCode(templateType);
 
         for(int i=0; i<notificationData.size(); i++){
-            switch(notificationData.get(i).key){
-                case "updatedInfo":
+            switch(notificationData.get(i).getKey()){
+                case "cardholderNames":
                     Type listType = new TypeToken<ArrayList<CardholderName>>(){}.getType();
-                    List<CardholderName> test = new Gson().fromJson(notificationData.get(i).value, listType);
+                    List<CardholderName> test = new Gson().fromJson(notificationData.get(i).getKey(), listType);
                     template2.setCardholderNames(test);
                     break;
                 case "firstName":
-                    template2.setFirstName(notificationData.get(i).value);
+                    template2.setFirstName(notificationData.get(i).getValue());
                     break;
             }
         }
         return template2;
     }
 
+    //template 3 is different use case with key,value pair in case TableTestItem. //Vijay
     private Template3 executeTemplate3(String templateType, List<NotificationData> notificationData){
         Template3 template3 = new Template3();
         template3.setAlertTypeCode(templateType);
 
         for(int i=0; i<notificationData.size(); i++){
-            switch(notificationData.get(i).key){
-                case "updatedInfo":
+            switch(notificationData.get(i).getKey()){
+                case "TableTestItem":
                     Type listType = new TypeToken<ArrayList<TestItem>>(){}.getType();
-                    List<TestItem> test = new Gson().fromJson(notificationData.get(i).value, listType);
+                    List<TestItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
                     template3.setTestItems(test);
                     break;
                 case "firstName":
-                    template3.setFirstName(notificationData.get(i).value);
+                    template3.setFirstName(notificationData.get(i).getValue());
                     break;
             }
         }

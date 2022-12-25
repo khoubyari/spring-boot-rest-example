@@ -1,4 +1,13 @@
 package com.khoubyari.example.model;
 
-public class CardholderName {
+import org.codehaus.jackson.annotate.JsonProperty;
+
+public class CardholderName<T> {
+
+    @JsonProperty("key")
+    public T key;
+
+    public T getKey(){
+        return key;
+    }
 }

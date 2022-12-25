@@ -1,25 +1,39 @@
 package com.khoubyari.example.model;
 
+import javax.annotation.Nullable;
 import java.io.Serializable;
+import java.util.Optional;
 
 public class NotificationData implements Serializable {
 
-    public String key;
+    private String key;
 
-    public String value;
+    private String value;
 
-    public String valueType;
+    private String valueType;
 
-    public String getKey() { return key; }
+    public String getKey() {
+        return key;
+    }
 
-    public void setKey(String a) { this.key = key; }
+    public void setKey(String key) {
+        this.key = key;
+    }
 
-    public String getValue() { return value; }
+    public String getValue() {
+        return value;
+    }
 
-    public void setValue(String mohasin) { this.value = value; }
+    public void setValue(String value) {
+        this.value = value;
+    }
 
-    public String getValueType() { return valueType; }
+    @Nullable
+    public Optional<String> getValueType() {
+        return Optional.ofNullable(valueType);
+    }
 
-    public void setValueType(String looparray) { this.valueType = valueType; }
-
+    public void setValueType(String valueType) {
+        this.valueType = valueType;
+    }
 }
