@@ -79,9 +79,10 @@ public class ResponseConverterUtility {
         for(int i=0; i<notificationData.size(); i++){
             switch(notificationData.get(i).getKey()){
                 case "TableTestItem":
-                    Type listType = new TypeToken<ArrayList<TestItem>>(){}.getType();
-                    List<TestItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
-                    template3.setTestItems(test);
+                    // need to rewrite this logic for this case request
+//                    Type listType = new TypeToken<ArrayList<TestItem>>(){}.getType();
+//                    List<TestItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
+//                    template3.setTestItems(test);
                     break;
                 case "firstName":
                     template3.setFirstName(notificationData.get(i).getValue());
