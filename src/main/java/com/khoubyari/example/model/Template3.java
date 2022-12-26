@@ -9,18 +9,69 @@ public class Template3 implements Serializable {
 
     public String alertTypeCode;
 
-    public List<TestItem> testItems;
+    private String lastFour;
 
-    public String getFirstName() { return firstName; }
+    private String icceUrl;
 
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    private String clientName;
 
-    public String getAlertTypeCode() { return alertTypeCode; }
+    private String bodyMod;
 
-    public void setAlertTypeCode(String alertTypeCode) { this.alertTypeCode = alertTypeCode; }
+    private List<TableTestItem> tableTestItemList;
 
-    public List<TestItem> getTestItems() { return testItems; }
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public void setTestItems(List<TestItem> testItems) { this.testItems = testItems; }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
+    public String getAlertTypeCode() {
+        return alertTypeCode;
+    }
+
+    public void setAlertTypeCode(String alertTypeCode) {
+        this.alertTypeCode = alertTypeCode;
+    }
+
+    public String getLastFour() {
+        return lastFour;
+    }
+
+    public void setLastFour(String lastFour) {
+        this.lastFour = lastFour;
+    }
+
+    public String getIcceUrl() {
+        return icceUrl;
+    }
+
+    public void setIcceUrl(String icceUrl) {
+        this.icceUrl = icceUrl;
+    }
+
+    public String getClientName() {
+        return clientName;
+    }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+
+    public String getBodyMod() {
+        return bodyMod;
+    }
+
+    public void setBodyMod(String bodyMod) {
+        this.bodyMod = bodyMod;
+    }
+
+    public List<TableTestItem> getTableTestItemList() {
+        return tableTestItemList;
+    }
+
+    public void setTableTestItemList(List<TableTestItem> tableTestItemList) {
+        this.tableTestItemList = tableTestItemList;
+    }
 }

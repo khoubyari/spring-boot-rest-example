@@ -78,14 +78,31 @@ public class ResponseConverterUtility {
 
         for(int i=0; i<notificationData.size(); i++){
             switch(notificationData.get(i).getKey()){
-                case "TableTestItem":
-                    // need to rewrite this logic for this case request
-//                    Type listType = new TypeToken<ArrayList<TestItem>>(){}.getType();
-//                    List<TestItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
-//                    template3.setTestItems(test);
+                case "tableItem":
+                    // need to rewrite this logic for this case request //VIJAY
+                    /*
+                    key="tableItem"
+                    value="[{"number":"1", "description":"test1"},{"number":"2", "description":"test2"},{"number":"3", "description":"test3"}]"
+                     */
+                    Type listType = new TypeToken<ArrayList<TableTestItem>>(){}.getType();
+                    List<TableTestItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
+                    // test is printing as NULL //VIJAY
+                    template3.setTableTestItemList(test);
                     break;
                 case "firstName":
                     template3.setFirstName(notificationData.get(i).getValue());
+                    break;
+                case "icceUrl":
+                    template3.setIcceUrl(notificationData.get(i).getValue());
+                    break;
+                case "lastFour":
+                    template3.setLastFour(notificationData.get(i).getValue());
+                    break;
+                case "clientName":
+                    template3.setClientName(notificationData.get(i).getValue());
+                    break;
+                case "bodyMod":
+                    template3.setBodyMod(notificationData.get(i).getValue());
                     break;
             }
         }
