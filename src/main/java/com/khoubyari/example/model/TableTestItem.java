@@ -1,9 +1,13 @@
 package com.khoubyari.example.model;
 
+import org.codehaus.jackson.annotate.JsonProperty;
+
 public class TableTestItem {
 
+    @JsonProperty("desc")
     private String description;
 
+    @JsonProperty("no")
     private String number;
 
     public String getDescription() {

@@ -26,7 +26,7 @@ public class ResponseConverterUtiltiyTest {
 
         NotificationData notificationData1 = new NotificationData();
         notificationData1.setKey("tableItem");
-        notificationData1.setValue("\"[{\"number\":\"1\", \"description\":\"test1\"},{\"number\":\"2\", \"description\":\"test2\"},{\"number\":\"3\", \"description\":\"test3\"}]\"");
+        notificationData1.setValue("[{\"number\":\"1\", \"description\":\"test1\"},{\"number\":\"2\", \"description\":\"test2\"},{\"number\":\"3\", \"description\":\"test3\"}]");
         notificationData1.setValueType("table");
 
         NotificationData notificationData2 = new NotificationData();
@@ -55,7 +55,6 @@ public class ResponseConverterUtiltiyTest {
         responseConverterUtility.test("ghi", notificationDataList);
     }
 
-    //this test case works
     @Test
     public void testTestTemplate1(){
         List<NotificationData> notificationDataList = new ArrayList<>();

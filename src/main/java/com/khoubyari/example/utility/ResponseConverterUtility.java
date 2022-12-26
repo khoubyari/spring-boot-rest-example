@@ -75,7 +75,6 @@ public class ResponseConverterUtility {
         return template2;
     }
 
-    //template 3 is different use case with key,value pair in case TableTestItem. //Vijay
     private Template3 executeTemplate3(String templateType, List<NotificationData> notificationData){
         Template3 template3 = new Template3();
         template3.setAlertTypeCode(templateType);
@@ -83,14 +82,9 @@ public class ResponseConverterUtility {
         for(int i=0; i<notificationData.size(); i++){
             switch(notificationData.get(i).getKey()){
                 case "tableItem":
-                    // need to rewrite this logic for this case request //VIJAY
-                    /*
-                    key="tableItem"
-                    value="[{"number":"1", "description":"test1"},{"number":"2", "description":"test2"},{"number":"3", "description":"test3"}]"
-                     */
                     Type listType = new TypeToken<ArrayList<TableTestItem>>(){}.getType();
+                    System.out.println(listType.toString());
                     List<TableTestItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
-                    // test is printing as NULL //VIJAY
                     template3.setTableTestItemList(test);
                     break;
                 case "firstName":
