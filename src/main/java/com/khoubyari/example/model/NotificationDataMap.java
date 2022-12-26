@@ -33,4 +33,13 @@ public class NotificationDataMap {
     public void setNotificationDataList(List<NotificationData> notificationDataList) {
         this.notificationDataList = notificationDataList;
     }
+
+    @Override
+    public String toString() {
+        return "NotificationDataMap{" +
+                "templateCode='" + templateCode + '\'' +
+                ", templateId='" + templateId + '\'' +
+                ", notificationDataList=" + notificationDataList +
+                '}';
+    }
 }

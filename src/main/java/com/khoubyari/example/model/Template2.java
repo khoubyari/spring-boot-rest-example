@@ -24,4 +24,12 @@ public class Template2 implements Serializable {
 
     public void setCardholderNames(List<CardholderName> cardholderNames) { this.cardholderNames = cardholderNames; }
 
+    @Override
+    public String toString() {
+        return "Template2{" +
+                "firstName='" + firstName + '\'' +
+                ", alertTypeCode='" + alertTypeCode + '\'' +
+                ", cardholderNames=" + cardholderNames +
+                '}';
+    }
 }

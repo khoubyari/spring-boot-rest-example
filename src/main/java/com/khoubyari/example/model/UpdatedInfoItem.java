@@ -10,4 +10,11 @@ public class UpdatedInfoItem<T> {
     public T getValue(){
         return value;
     }
+
+    @Override
+    public String toString() {
+        return "UpdatedInfoItem{" +
+                "value=" + value +
+                '}';
+    }
 }

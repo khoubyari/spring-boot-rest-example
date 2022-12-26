@@ -23,4 +23,12 @@ public class Template1 implements Serializable {
 
     public void setUpdatedInfo(List<UpdatedInfoItem> updatedInfo) { this.updatedInfo = updatedInfo; }
 
+    @Override
+    public String toString() {
+        return "Template1{" +
+                "firstName='" + firstName + '\'' +
+                ", alertTypeCode='" + alertTypeCode + '\'' +
+                ", updatedInfo=" + updatedInfo +
+                '}';
+    }
 }

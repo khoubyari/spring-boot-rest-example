@@ -74,4 +74,17 @@ public class Template3 implements Serializable {
     public void setTableTestItemList(List<TableTestItem> tableTestItemList) {
         this.tableTestItemList = tableTestItemList;
     }
+
+    @Override
+    public String toString() {
+        return "Template3{" +
+                "firstName='" + firstName + '\'' +
+                ", alertTypeCode='" + alertTypeCode + '\'' +
+                ", lastFour='" + lastFour + '\'' +
+                ", icceUrl='" + icceUrl + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", bodyMod='" + bodyMod + '\'' +
+                ", tableTestItemList=" + tableTestItemList +
+                '}';
+    }
 }

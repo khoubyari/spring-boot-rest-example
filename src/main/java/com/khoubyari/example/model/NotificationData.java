@@ -36,4 +36,13 @@ public class NotificationData implements Serializable {
     public void setValueType(String valueType) {
         this.valueType = valueType;
     }
+
+    @Override
+    public String toString() {
+        return "NotificationData{" +
+                "key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", valueType='" + valueType + '\'' +
+                '}';
+    }
 }

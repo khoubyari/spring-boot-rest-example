@@ -10,4 +10,11 @@ public class CardholderName<T> {
     public T getKey(){
         return key;
     }
+
+    @Override
+    public String toString() {
+        return "CardholderName{" +
+                "key=" + key +
+                '}';
+    }
 }

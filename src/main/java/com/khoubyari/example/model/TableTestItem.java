@@ -21,4 +21,12 @@ public class TableTestItem {
     public void setNumber(String number) {
         this.number = number;
     }
+
+    @Override
+    public String toString() {
+        return "TableTestItem{" +
+                "description='" + description + '\'' +
+                ", number='" + number + '\'' +
+                '}';
+    }
 }

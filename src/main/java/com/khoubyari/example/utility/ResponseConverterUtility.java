@@ -48,6 +48,7 @@ public class ResponseConverterUtility {
             }
         }
 
+        System.out.println("print template1: " + template1);
         return template1;
     }
 
@@ -68,6 +69,9 @@ public class ResponseConverterUtility {
                     break;
             }
         }
+
+        System.out.println("print template2: " + template2);
+
         return template2;
     }
 
@@ -106,6 +110,9 @@ public class ResponseConverterUtility {
                     break;
             }
         }
+
+        System.out.println("print template3: " + template3);
+
         return template3;
     }
 
