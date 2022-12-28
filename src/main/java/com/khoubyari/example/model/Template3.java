@@ -1,14 +1,8 @@
 package com.khoubyari.example.model;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Template3 implements Serializable {
-
-    public String firstName;
-
-    public String alertTypeCode;
-
+public class Template3 extends Template {
     private String lastFour;
 
     private String icceUrl;
@@ -18,22 +12,6 @@ public class Template3 implements Serializable {
     private String bodyMod;
 
     private List<TableTestItem> tableTestItemList;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getAlertTypeCode() {
-        return alertTypeCode;
-    }
-
-    public void setAlertTypeCode(String alertTypeCode) {
-        this.alertTypeCode = alertTypeCode;
-    }
 
     public String getLastFour() {
         return lastFour;

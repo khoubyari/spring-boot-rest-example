@@ -13,101 +13,90 @@ import java.util.List;
 public class ResponseConverterUtility {
 
     //how in java to return different ObjectTypes in a method?? this Object returns NULL value //Vijay
-    public Object test(String templateType, List<NotificationData> notificationData){
+    public Template test(String templateType, List<NotificationData> notificationData){
+        Template template = null;
         switch(templateType){
             case "abc":
-            executeTemplate1(templateType, notificationData);
-            break;
+                template = new Template1();
+                executeTemplate((Template1) template, notificationData);
+                break;
             case "def":
-            executeTemplate2(templateType, notificationData);
-            break;
+                template = new Template2();
+                executeTemplate((Template2) template, notificationData);
+                break;
             case "ghi":
-            executeTemplate3(templateType, notificationData);
-            break;
+                template = new Template3();
+                executeTemplate((Template3) template, notificationData);
+                break;
+            default:
+                return null;
         }
-        
-    return null;
+        template.setAlertTypeCode(templateType);
+        return template;
     }
 
-    //how to refactor this common executeTemplate1, executeTemplate2, executeTemplate3 into a generic function ?? //VIJAY
+    private void executeGenerics(Template template, List<NotificationData> notificationData) {
+        for (NotificationData notificationDatum : notificationData) {
+            if (notificationDatum.getKey().equals("firstName")) {
+                template.setFirstName(notificationDatum.getValue());
+            }
+        }
+    }
 
-    private Template1 executeTemplate1(String templateType, List<NotificationData> notificationData){
-        Template1 template1 = new Template1();
-        template1.setAlertTypeCode(templateType);
+    private void executeTemplate(Template1 template, List<NotificationData> notificationData){
 
-        for(int i=0; i<notificationData.size(); i++){
-            switch(notificationData.get(i).getKey()){
+        for (NotificationData notificationDatum : notificationData) {
+            switch (notificationDatum.getKey()) {
                 case "updatedInfo":
-                    Type listType = new TypeToken<ArrayList<UpdatedInfoItem>>(){}.getType();
-                    List<UpdatedInfoItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
-                    template1.setUpdatedInfo(test);
+                    Type listType = new TypeToken<ArrayList<UpdatedInfoItem>>() {
+                    }.getType();
+                    List<UpdatedInfoItem> test = new Gson().fromJson(notificationDatum.getValue(), listType);
+                    template.setUpdatedInfo(test);
                     break;
                 case "firstName":
-                    template1.setFirstName(notificationData.get(i).getValue());
+                    template.setFirstName(notificationDatum.getValue());
                     break;
             }
         }
-
-        System.out.println("print template1: " + template1);
-        return template1;
     }
 
 
-    private Template2 executeTemplate2(String templateType, List<NotificationData> notificationData){
-        Template2 template2 = new Template2();
-        template2.setAlertTypeCode(templateType);
+    private void executeTemplate(Template2 template, List<NotificationData> notificationData){
 
-        for(int i=0; i<notificationData.size(); i++){
-            switch(notificationData.get(i).getKey()){
-                case "cardholderNames":
-                    Type listType = new TypeToken<ArrayList<CardholderName>>(){}.getType();
-                    List<CardholderName> test = new Gson().fromJson(notificationData.get(i).getKey(), listType);
-                    template2.setCardholderNames(test);
-                    break;
-                case "firstName":
-                    template2.setFirstName(notificationData.get(i).getValue());
-                    break;
+        for (NotificationData notificationDatum : notificationData) {
+            if (notificationDatum.getKey().equals("cardholderNames")) {
+                Type listType = new TypeToken<ArrayList<CardholderName>>() {
+                }.getType();
+                List<CardholderName> test = new Gson().fromJson(notificationDatum.getKey(), listType);
+                template.setCardholderNames(test);
             }
         }
-
-        System.out.println("print template2: " + template2);
-
-        return template2;
     }
 
-    private Template3 executeTemplate3(String templateType, List<NotificationData> notificationData){
-        Template3 template3 = new Template3();
-        template3.setAlertTypeCode(templateType);
-
-        for(int i=0; i<notificationData.size(); i++){
-            switch(notificationData.get(i).getKey()){
+    private void executeTemplate(Template3 template, List<NotificationData> notificationData){
+        for (NotificationData notificationDatum : notificationData) {
+            switch (notificationDatum.getKey()) {
                 case "tableItem":
-                    Type listType = new TypeToken<ArrayList<TableTestItem>>(){}.getType();
+                    Type listType = new TypeToken<ArrayList<TableTestItem>>() {
+                    }.getType();
                     System.out.println(listType.toString());
-                    List<TableTestItem> test = new Gson().fromJson(notificationData.get(i).getValue(), listType);
-                    template3.setTableTestItemList(test);
-                    break;
-                case "firstName":
-                    template3.setFirstName(notificationData.get(i).getValue());
+                    List<TableTestItem> test = new Gson().fromJson(notificationDatum.getValue(), listType);
+                    template.setTableTestItemList(test);
                     break;
                 case "icceUrl":
-                    template3.setIcceUrl(notificationData.get(i).getValue());
+                    template.setIcceUrl(notificationDatum.getValue());
                     break;
                 case "lastFour":
-                    template3.setLastFour(notificationData.get(i).getValue());
+                    template.setLastFour(notificationDatum.getValue());
                     break;
                 case "clientName":
-                    template3.setClientName(notificationData.get(i).getValue());
+                    template.setClientName(notificationDatum.getValue());
                     break;
                 case "bodyMod":
-                    template3.setBodyMod(notificationData.get(i).getValue());
+                    template.setBodyMod(notificationDatum.getValue());
                     break;
             }
         }
-
-        System.out.println("print template3: " + template3);
-
-        return template3;
     }
 
 
